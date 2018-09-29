@@ -11,33 +11,6 @@ namespace Extensions.Serialization.Csv
 {
     public static class Utilities
     {
-        private static string ToCsvLine<T>(this IEnumerable<T> input, char separator = ',', char? quotation = null)
-        {
-            if (input == null) return null;
-            var csv = new StringBuilder();
-            foreach (var value in input)
-            {
-                csv.AppendFormat("{0}{1}{2}{3}", quotation, value, quotation, separator);
-            }
-            if (csv.Length != 0)
-                return csv.ToString(0, csv.Length - 1);
-            return string.Empty;
-        }
-
-        private static string ToCsvLine<T>(this IEnumerable<T> input, CultureInfo info, string format = "G",
-            char separator = ',', char? quotation = null) where T : IFormattable
-        {
-            if (input == null) return null;
-            var csv = new StringBuilder();
-            foreach (var value in input)
-            {
-                csv.AppendFormat("{0}{1}{2}{3}", quotation, value.ToString(format, info), quotation, separator);
-            }
-            if (csv.Length != 0)
-                return csv.ToString(0, csv.Length - 1);
-            return string.Empty;
-        }
-
         public static string SerializeToCsv<T>(this IEnumerable<T> input, string separator = ",", char? quotation = null, CultureInfo info = null)
         {
             return SerializeToCsv(input, null, separator, quotation, info);
