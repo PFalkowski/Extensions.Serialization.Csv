@@ -2,6 +2,21 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Company></Company>
+    <Authors>Piotr Falkowski</Authors>
+    <Description>Serialize and deserialize easly from and to CSV.</Description>
+    <Copyright>Piotr Falkowski © 2018</Copyright>
+    <PackageProjectUrl>https://github.com/PFalkowski/Extensions.Serialization.Csv</PackageProjectUrl>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/PFalkowski/Extensions.Serialization.Csv</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>serialization,netcore,netstandard,csv,extension-methods</PackageTags>
+    <PackageReleaseNotes>Initial release</PackageReleaseNotes>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="7.1.1" />
+  </ItemGroup>
 
 </Project>
