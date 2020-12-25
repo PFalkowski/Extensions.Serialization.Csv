@@ -15,7 +15,7 @@ namespace Extensions.Serialization.Csv
         {
             return SerializeToCsv(input, null, separator, quotation, info);
         }
-
+        // TODO: Async version
         public static string SerializeToCsv<T>(this IEnumerable<T> input, ClassMap<T> propertiesMap, string separator = ",",
             char? quotation = null, CultureInfo info = null)
         {
@@ -48,7 +48,7 @@ namespace Extensions.Serialization.Csv
             }
             return stb.ToString();
         }
-
+        // TODO: Async version
         public static IEnumerable<T> DeserializeFromCsv<T>(this string csvContents, ClassMap<T> propertiesMap = null, CultureInfo info = null)
         {
             IEnumerable<T> result;
