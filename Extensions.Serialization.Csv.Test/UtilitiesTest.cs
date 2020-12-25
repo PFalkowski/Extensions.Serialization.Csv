@@ -10,10 +10,19 @@ namespace Extensions.Serialization.Csv.Test
     public class UtilitiesTest
     {
         [Fact]
-        public void ToCsvTest2()
+        public void ToCsvTest1()
         {
             var values = new[] { 1.123, 2.123, 3.234, 4.532, 5.723 };
             var csv = values.SerializeToCsv();
+            const string expected = "1.123\r\n2.123\r\n3.234\r\n4.532\r\n5.723\r\n";
+            Assert.Equal(expected, csv.ToString());
+        }
+
+        [Fact]
+        public void ToCsvTest2()
+        {
+            var values = new[] { 1.123, 2.123, 3.234, 4.532, 5.723 };
+            var csv = values.SerializeToCsv(quotation: '\"', info: CultureInfo.GetCultureInfo("PL-pl"));
             const string expected = "\"1,123\"\r\n\"2,123\"\r\n\"3,234\"\r\n\"4,532\"\r\n\"5,723\"\r\n";
             Assert.Equal(expected, csv.ToString());
         }
@@ -62,8 +71,10 @@ namespace Extensions.Serialization.Csv.Test
         {
             var tested = PersonsList;
             var serialized = tested.SerializeToCsv(",", '"');
+            var expected =
+                "\"FirstName\",\"LastName\",\"Age\"\r\n\"Alex\",\"Friedman\",\"27\"\r\n\"Jack\",\"Bauer\",\"45\"\r\n\"Cloe\",\"O'Brien\",\"35\"\r\n\"John\",\"Doe\",\"30\"\r\n\"Grace\",\"Hooper\",\"18\"\r\n";
 
-            Assert.Equal("\"FirstName\",\"LastName\",\"Age\"\r\n\"Alex\",\"Friedman\",\"27\"\r\n\"Jack\",\"Bauer\",\"45\"\r\n\"Cloe\",\"O'Brien\",\"35\"\r\n\"John\",\"Doe\",\"30\"\r\n\"Grace\",\"Hooper\",\"18\"\r\n", serialized.ToString());
+            Assert.Equal(expected, serialized.ToString());
         }
 
         private class PersonMaping : ClassMap<Person>
