@@ -15,7 +15,7 @@ namespace Extensions.Serialization.Csv.Test
             var values = new[] { 1.123, 2.123, 3.234, 4.532, 5.723 };
             var csv = values.SerializeToCsv();
             const string expected = "1.123\r\n2.123\r\n3.234\r\n4.532\r\n5.723\r\n";
-            Assert.Equal(expected, csv.ToString());
+            Assert.Equal(expected, csv);
         }
 
         [Fact]
@@ -24,7 +24,7 @@ namespace Extensions.Serialization.Csv.Test
             var values = new[] { 1.123, 2.123, 3.234, 4.532, 5.723 };
             var csv = values.SerializeToCsv(quotation: '\"', info: CultureInfo.GetCultureInfo("PL-pl"));
             const string expected = "\"1,123\"\r\n\"2,123\"\r\n\"3,234\"\r\n\"4,532\"\r\n\"5,723\"\r\n";
-            Assert.Equal(expected, csv.ToString());
+            Assert.Equal(expected, csv);
         }
 
         [Fact]
@@ -56,7 +56,7 @@ namespace Extensions.Serialization.Csv.Test
             var tested = PersonsList;
             var serialized = tested.SerializeToCsv();
 
-            Assert.Equal("FirstName,LastName,Age\r\nAlex,Friedman,27\r\nJack,Bauer,45\r\nCloe,O'Brien,35\r\nJohn,Doe,30\r\nGrace,Hooper,18\r\n", serialized.ToString());
+            Assert.Equal("FirstName,LastName,Age\r\nAlex,Friedman,27\r\nJack,Bauer,45\r\nCloe,O'Brien,35\r\nJohn,Doe,30\r\nGrace,Hooper,18\r\n", serialized);
         }
         [Fact]
         public void ToCsvDSrializesProperlyWithCustomSeparator()
@@ -64,7 +64,7 @@ namespace Extensions.Serialization.Csv.Test
             var tested = PersonsList;
             var serialized = tested.SerializeToCsv("*");
 
-            Assert.Equal("FirstName*LastName*Age\r\nAlex*Friedman*27\r\nJack*Bauer*45\r\nCloe*O'Brien*35\r\nJohn*Doe*30\r\nGrace*Hooper*18\r\n", serialized.ToString());
+            Assert.Equal("FirstName*LastName*Age\r\nAlex*Friedman*27\r\nJack*Bauer*45\r\nCloe*O'Brien*35\r\nJohn*Doe*30\r\nGrace*Hooper*18\r\n", serialized);
         }
         [Fact]
         public void ToCsvDeSrializesProperlyWithCustomQuotation()
@@ -74,7 +74,7 @@ namespace Extensions.Serialization.Csv.Test
             var expected =
                 "\"FirstName\",\"LastName\",\"Age\"\r\n\"Alex\",\"Friedman\",\"27\"\r\n\"Jack\",\"Bauer\",\"45\"\r\n\"Cloe\",\"O'Brien\",\"35\"\r\n\"John\",\"Doe\",\"30\"\r\n\"Grace\",\"Hooper\",\"18\"\r\n";
 
-            Assert.Equal(expected, serialized.ToString());
+            Assert.Equal(expected, serialized);
         }
 
         private class PersonMaping : ClassMap<Person>
@@ -93,7 +93,7 @@ namespace Extensions.Serialization.Csv.Test
             var tested = PersonsList;
             var serialized = tested.SerializeToCsv(new PersonMaping(), ",", '"');
 
-            Assert.Equal("\"forename\",\"surname\",\"age\"\r\n\"Alex\",\"Friedman\",\"27\"\r\n\"Jack\",\"Bauer\",\"45\"\r\n\"Cloe\",\"O'Brien\",\"35\"\r\n\"John\",\"Doe\",\"30\"\r\n\"Grace\",\"Hooper\",\"18\"\r\n", serialized.ToString());
+            Assert.Equal("\"forename\",\"surname\",\"age\"\r\n\"Alex\",\"Friedman\",\"27\"\r\n\"Jack\",\"Bauer\",\"45\"\r\n\"Cloe\",\"O'Brien\",\"35\"\r\n\"John\",\"Doe\",\"30\"\r\n\"Grace\",\"Hooper\",\"18\"\r\n", serialized);
         }
 
         [Fact]
@@ -140,7 +140,7 @@ namespace Extensions.Serialization.Csv.Test
 
         public sealed class StockQuote
         {
-            public string Ticker { get; set; }
+            public string Ticker { get; set; } = null!;
             public long Date { get; set; }
             public double Open { get; set; }
             public double High { get; set; }
@@ -166,8 +166,8 @@ namespace Extensions.Serialization.Csv.Test
 
         public sealed class Person
         {
-            public string FirstName { get; set; }
-            public string LastName { get; set; }
+            public string FirstName { get; set; } = null!;
+            public string LastName { get; set; } = null!;
             public int Age { get; set; }
         }
 
@@ -209,7 +209,7 @@ namespace Extensions.Serialization.Csv.Test
 
         public sealed class Account
         {
-            public Person Owner { get; set; }
+            public Person Owner { get; set; } = null!;
             public double Balance { get; set; }
         }
         #endregion
