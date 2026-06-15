@@ -1,4 +1,4 @@
-# Extensions.Serialization.Csv
+﻿# Extensions.Serialization.Csv
 
 [![CI](https://github.com/PFalkowski/Extensions.Serialization.Csv/actions/workflows/ci.yml/badge.svg)](https://github.com/PFalkowski/Extensions.Serialization.Csv/actions/workflows/ci.yml)
 [![NuGet version](https://img.shields.io/nuget/v/Extensions.Serialization.Csv.svg)](https://www.nuget.org/packages/Extensions.Serialization.Csv/)
@@ -9,6 +9,12 @@
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-yellow.svg)](https://www.buymeacoffee.com/piotrfalkowski)
 
 CSV serialization and deserialization extension methods built on [CsvHelper](https://joshclose.github.io/CsvHelper/).
+
+## Install
+
+```bash
+dotnet add package Extensions.Serialization.Csv
+```
 
 ## Usage
 
