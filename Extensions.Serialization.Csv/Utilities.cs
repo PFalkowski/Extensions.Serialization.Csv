@@ -42,6 +42,7 @@ namespace Extensions.Serialization.Csv
             info ??= CultureInfo.InvariantCulture;
             var stb = new StringBuilder();
             using var writer = new CsvWriter(new StringWriter(stb), info);
+            writer.Configuration.NewLine = CsvHelper.Configuration.NewLine.Environment;
             writer.Configuration.Delimiter = separator;
             writer.Configuration.SanitizeForInjection = true;
             if (quotation.HasValue)
