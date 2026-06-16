@@ -19,7 +19,7 @@ namespace Extensions.Serialization.Csv
         /// <param name="quotation">The quotation.</param>
         /// <param name="info">The information.</param>
         /// <returns></returns>
-        public static string SerializeToCsv<T>(this IEnumerable<T> input, string separator = ",", char? quotation = null, CultureInfo info = null)
+        public static string? SerializeToCsv<T>(this IEnumerable<T>? input, string separator = ",", char? quotation = null, CultureInfo? info = null)
         {
             return SerializeToCsv(input, null, separator, quotation, info);
         }
@@ -35,13 +35,14 @@ namespace Extensions.Serialization.Csv
         /// <param name="quotation">The quotation.</param>
         /// <param name="info">The information.</param>
         /// <returns></returns>
-        public static string SerializeToCsv<T>(this IEnumerable<T> input, ClassMap<T> propertiesMap, string separator = ",",
-            char? quotation = null, CultureInfo info = null)
+        public static string? SerializeToCsv<T>(this IEnumerable<T>? input, ClassMap<T>? propertiesMap, string separator = ",",
+            char? quotation = null, CultureInfo? info = null)
         {
             if (input == null) return null;
             info ??= CultureInfo.InvariantCulture;
             var stb = new StringBuilder();
             using var writer = new CsvWriter(new StringWriter(stb), info);
+            writer.Configuration.NewLine = CsvHelper.Configuration.NewLine.Environment;
             writer.Configuration.Delimiter = separator;
             writer.Configuration.SanitizeForInjection = true;
             if (quotation.HasValue)
@@ -69,7 +70,7 @@ namespace Extensions.Serialization.Csv
         /// <param name="propertiesMap">The properties map.</param>
         /// <param name="info">The information.</param>
         /// <returns></returns>
-        public static IEnumerable<T> DeserializeFromCsv<T>(this string input, ClassMap<T> propertiesMap = null, CultureInfo info = null)
+        public static IEnumerable<T> DeserializeFromCsv<T>(this string input, ClassMap<T>? propertiesMap = null, CultureInfo? info = null)
         {
             info ??= CultureInfo.InvariantCulture;
             using var csv = new CsvReader(new StringReader(input), info);
